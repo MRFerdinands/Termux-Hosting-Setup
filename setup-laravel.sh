@@ -392,7 +392,7 @@ configure_mysql() {
     mysql_install_db
     
     # Start MariaDB temporarily for initial setup
-    mysqld_safe --datadir="$PREFIX/var/lib/mysql" --socket="$PREFIX/tmp/mysqld.sock" &
+    mysqld_safe --datadir="$PREFIX/var/lib/mysql" --socket="$PREFIX/var/run/mysqld/mysqld.sock" &
     MYSQL_PID=$!
     
     # Wait for MySQL to start
@@ -680,7 +680,7 @@ start_services() {
     # Start MariaDB
     if ! pgrep mysqld > /dev/null; then
         log "Starting MariaDB..."
-        mysqld_safe --datadir="$PREFIX/var/lib/mysql" --socket="$PREFIX/tmp/mysqld.sock" &
+        mysqld_safe --datadir="$PREFIX/var/lib/mysql" --socket="$PREFIX/var/run/mysqld/mysqld.sock" &
         sleep 3
     else
         log "MariaDB is already running"
