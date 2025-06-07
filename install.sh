@@ -81,8 +81,8 @@ update_termux() {
 download_script() {
     log "Downloading Laravel setup script..."
     
-    # Create temporary directory
-    temp_dir="/tmp/laravel-setup-$$"
+    # Create temporary directory in Termux home
+    temp_dir="$HOME/.laravel-setup-temp-$"
     mkdir -p "$temp_dir"
     cd "$temp_dir"
     
@@ -142,7 +142,7 @@ run_installation() {
 cleanup() {
     log "Cleaning up temporary files..."
     cd "$HOME"
-    rm -rf "/tmp/laravel-setup-$$" 2>/dev/null || true
+    rm -rf "$HOME/.laravel-setup-temp-$" 2>/dev/null || true
 }
 
 show_completion() {
